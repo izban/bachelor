@@ -1,0 +1,80 @@
+\documentclass[11pt,a4paper]{article}
+%\documentclass[14pt]{extarticle}
+
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian,english]{babel}
+%\usepackage{pscyr}
+
+\usepackage{amssymb,amsthm,amsmath,amsfonts,epsf,array,epic,eepic,pstcol,graphicx,pst-node,comment,rotating,ccaption}
+\usepackage{setspace}
+\usepackage[text={17.5cm,25cm}, includehead]{geometry}
+
+\onehalfspacing
+
+\addto\extrasrussian{\renewcommand{\refname}{\normalfont\scshape\normalsize Литература}}
+\let\le\leqslant
+\let\leq\leqslant
+\let\ge\geqslant
+\let\geq\geqslant
+\newcommand\kratno{\mathrel{\smash{\lower.5ex\hbox{$\vdots$}}}}
+\def\const{\mbox{const}\,}
+
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\sign}{Sign}
+
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{\arabic{subsection}}
+
+\theoremstyle{plain}
+\newtheorem{predl}{Предложение}[subsection]
+\newtheorem{theorem}{Theorem}[subsection]
+\newtheorem*{oldtheorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}%[subsection]
+\newtheorem{sledst}{Consequence}[theorem]
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition} %[section]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark} %[subsection]
+
+\DeclareMathOperator{\pf}{Pf}
+
+%\renewcommand{\thedefinition}{\arabic{definition}}
+\renewcommand{\proofname}{Доказательство}
+
+\makeatletter
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+{2\baselineskip}{\baselineskip}{\bfseries\large\itshape}} \makeatother
+
+\captiondelim{. }
+
+
+
+\begin{document}
+\selectlanguage{russian}
+\pagestyle{myheadings}
+
+\makeatletter
+\renewcommand{\@oddhead}{\hfil Поиск абелевых подстрок\ \hfil\thepage}
+\makeatother
+
+%\begin{title}
+\title{Поиск Абелевых подстрок}
+\author{И.~Збань}
+\date{Version 0.1}
+%\end{title}
+
+\maketitle
+
+\tableofcontents
+
+\input{parts/introduction}
+\input{parts/previous}
+\input{parts/squares}
+\input{parts/common}
+\input{parts/conclusion}
+
+\clearpage
+\input{parts/bibliography}
+
+\end{document}
