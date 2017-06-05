@@ -68,19 +68,20 @@ int lcasFast(string a, string b) {
 }
 
 int main() {
-    const int N = 10000;
-    //for (int N = 1000; N <= 10000; N += 1000) {
+    //const int N = 10000;
+    for (int N = 100; N <= 10000; N += 100) {
     long long sum = 0;
     long long sumJumps = 0;
-    for (int it = 0; it < 1e4; it++) {
+    const int ITERATIONS = 1e3;
+    for (int it = 0; it < ITERATIONS; it++) {
         srand(it);
         string a = randomString(N);
         string b = randomString(N);
         int len = lcasFast(a, b);
         sum += len;
         sumJumps += jumps;
-        cout << it << " " << len << "/" << N << ", jumps: " << jumps << ", avLCAS: " << (double)sum / ((it + 1)) << ", av jumps: " << (double)sumJumps / (it + 1) << endl;
+        //cout << it << " " << len << "/" << N << ", jumps: " << jumps << ", avLCAS: " << (double)sum / ((it + 1)) << ", av jumps: " << (double)sumJumps / (it + 1) << endl;
     } 
-    //cout << N << " " << sum / 1e4 << endl;
-    //}
+    cout << N << " " << sum / ITERATIONS << endl;
+    }
 }
