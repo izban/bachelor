@@ -15,7 +15,7 @@
 #include <memory.h>
 #include <queue>
 
-#pragma comment(linker, "/STACK:64000000")
+//#pragma comment(linker, "/STACK:64000000")
 typedef long long ll;
 
 using namespace std;
@@ -232,7 +232,7 @@ void precalc() {
 	for (int i = 1; i < PW; i++) bits[i] = bits[i / 2] + i % 2;
 }
 
-int popcount(ll x) {
+int popcount(unsigned long long x) {
 	return bits[x % PW] + bits[x / PW % PW] + bits[x / PW / PW];
 }
 
@@ -259,8 +259,8 @@ struct my_bitset {
 	int n;
 	vector<ll> a;
 
-	my_bitset(int n) {
-		this->n = n;
+	my_bitset(int _n) {
+		this->n = _n;
 		a.resize((n + 63) / 64);
 	}
 
@@ -299,9 +299,9 @@ void BSGLemma(int n, int m, vector<pt> G, double alpha, vector<int> &ra, vector<
 	vector<int> A0;
 
 	for (int i = 0; i < n; i++) if (deg[i] >= alpha * m / 2) A0.push_back(i);
-	for (int j : p) {
+	for (int jj : p) {
 		vector<int> A;
-		for (int x : A0) if (e[x].get(j)) A.push_back(x);
+		for (int x : A0) if (e[x].get(jj)) A.push_back(x);
 		vector<pt> bad;
 		for (int i = 0; i < (int)A.size(); i++) {
 			for (int j = i + 1; j < (int)A.size(); j++) {
@@ -313,13 +313,13 @@ void BSGLemma(int n, int m, vector<pt> G, double alpha, vector<int> &ra, vector<
 		if (A.size() < alpha * n / 4) continue;
 		if (bad.size() <= alpha * alpha * n * A.size() / 256) {
 			vector<int> deg2(n);
-			for (pt p : bad) deg2[p.x]++, deg2[p.y]++;
+			for (pt pp : bad) deg2[pp.x]++, deg2[pp.y]++;
 			vector<int> aP, bP;
 			for (int x : A) if (deg2[x] <= alpha * alpha * A.size() / 64) aP.push_back(x);
 			vector<int> inA(n);
 			for (int x : A) inA[x] = 1;
 			vector<int> deg3(m);
-			for (auto p : G) if (inA[p.x]) deg3[p.y]++;
+			for (auto pp : G) if (inA[pp.x]) deg3[pp.y]++;
 			for (int i = 0; i < m; i++) if (deg3[i] >= alpha * aP.size() / 4) bP.push_back(i);
 			ra = aP;
 			rb = bP;
@@ -386,7 +386,7 @@ ll FFTLemma(vector<pt> a, vector<pt> b, vector<pt> t, vector<pt> c) {
 	vector<int> primes;
 	vector<vector<ll> > product;
 
-	while (cnt < t.size()) {
+	while (cnt < (int)t.size()) {
 		N *= 1.5;
 		//N = min(N, (int)t.size() * 10);
 		//N = max(N + 10, (int)(N * 1.01));
@@ -394,10 +394,10 @@ ll FFTLemma(vector<pt> a, vector<pt> b, vector<pt> t, vector<pt> c) {
 		for (int i = 0; i < 5; i++) p.push_back(*lower_bound(pr.begin(), pr.end(), Rand(N - N / 2) + N / 2));
 		int mx = -1, pp = -1;
 		for (int i = 0; i < (int)p.size(); i++) {
-			vector<int> cnt(p[i]);
-			for (ll x : cc) cnt[x % p[i]]++;
+			vector<int> curcnt(p[i]);
+			for (ll x : cc) curcnt[x % p[i]]++;
 			int cur = 0;
-			for (int j = 0; j < (int)t.size(); j++) cur += distinguished[j] == -1 && cnt[cc[j] % p[i]] == 1;
+			for (int j = 0; j < (int)t.size(); j++) cur += distinguished[j] == -1 && curcnt[cc[j] % p[i]] == 1;
 			if (mx < cur) {
 				mx = cur;
 				pp = p[i];
@@ -409,9 +409,9 @@ ll FFTLemma(vector<pt> a, vector<pt> b, vector<pt> t, vector<pt> c) {
 		}
 		if (mx > 0) {
 			cnt += mx;
-			vector<int> cnt(pp);
-			for (ll x : cc) cnt[x % pp]++;
-			for (int j = 0; j < (int)t.size(); j++) if (distinguished[j] == -1 && cnt[cc[j] % pp] == 1) distinguished[j] = primes.size();
+			vector<int> curcnt(pp);
+			for (ll x : cc) curcnt[x % pp]++;
+			for (int j = 0; j < (int)t.size(); j++) if (distinguished[j] == -1 && curcnt[cc[j] % pp] == 1) distinguished[j] = primes.size();
 			for (int i = 0; i < pp; i++) FFT::A[i] = FFT::B[i] = 0;
 			for (int i = 0; i < (int)aa.size(); i++) FFT::A[aa[i] % pp]++;
 			for (int i = 0; i < (int)bb.size(); i++) FFT::B[bb[i] % pp]++;
@@ -501,10 +501,10 @@ ll solve3Sum(vector<pt > A, vector<pt > B, vector<pt > C, int h) {
 				ans += res;
 				continue;
 			}
-			auto getCells = [&](vector<pt > a) {
+			auto getCells = [&](vector<pt > aa) {
 				vector<pt > res;
-				for (int i = 0; i < (int)a.size(); i++) {
-					res.push_back(pt(a[i].x / l, a[i].y / l));
+				for (int i = 0; i < (int)aa.size(); i++) {
+					res.push_back(pt(aa[i].x / l, aa[i].y / l));
 				}
 				sort(res.begin(), res.end());
 				res.resize(unique(res.begin(), res.end()) - res.begin());
@@ -518,11 +518,11 @@ ll solve3Sum(vector<pt > A, vector<pt > B, vector<pt > C, int h) {
 			vector<pt > r;
 			BSGCorollary(cellA, cellB, cellC, alpha, ra, rb, r);
 			vector<vector<pt> > bA(cellA.size()), bB(cellB.size()), bC(cellC.size());
-			auto fill = [&](const vector<pt> &a, const vector<pt> &b, vector<vector<pt> > &c) {
+			auto fill = [&](const vector<pt> &aa, const vector<pt> &bb, vector<vector<pt> > &cc) {
 				int j = 0;
-				for (auto x : a) {
-					if (pt(x.x / l, x.y / l) > b[j]) j++;
-					c[j].push_back(x);
+				for (auto x : aa) {
+					if (pt(x.x / l, x.y / l) > bb[j]) j++;
+					cc[j].push_back(x);
 				}
 			};
 			fill(a, cellA, bA);
@@ -553,9 +553,9 @@ ll solve3Sum(vector<pt > A, vector<pt > B, vector<pt > C, int h) {
 				t.resize(unique(t.begin(), t.end()) - t.begin());
 				vector<pt> tt;
 				for (pt p : t) {
-					for (int i = 0; i < l; i++) {
+					for (int ii = 0; ii < l; ii++) {
 						for (int j = 0; j < l; j++) {
-							tt.push_back(pt(p.x * l + i, p.y * l + j));
+							tt.push_back(pt(p.x * l + ii, p.y * l + j));
 						}
 					}
 				}
@@ -563,7 +563,7 @@ ll solve3Sum(vector<pt > A, vector<pt > B, vector<pt > C, int h) {
 				vector<pt> pC;
 				for (pt p : t) {
 					int id = lower_bound(cellC.begin(), cellC.end(), p) - cellC.begin();
-					if (id != cellC.size() && cellC[id] == p) {
+					if (id != (int)cellC.size() && cellC[id] == p) {
 						for (pt pp : bC[id]) {
 							pC.push_back(pp);
 						}
