@@ -1,0 +1,141 @@
+\documentclass[hyperref=unicode,graphics=pdflatex,12pt]{beamer}
+
+\usepackage[T2A]{fontenc}
+\usepackage[cp1251]{inputenc}
+\usepackage[russian]{babel}
+
+
+\mode<presentation>
+{
+  \setbeamercovered{invisible}
+}
+
+\usepackage{amssymb,amsthm,amsmath,amsfonts,array,pstcol,graphicx,pst-node,comment,rotating,ccaption,beamerthemesplit}
+
+\def\sgn{\text{sgn}\,}
+
+\useoutertheme{infolines}
+\setbeamertemplate{theorems}[numbered]
+\setbeamertemplate{footline}[page number]{}
+\setbeamertemplate{headline}{}
+
+\deftranslation{Theorem}{Теорема}
+\deftranslation{Lemma}{Лемма}
+\deftranslation{Definition}{Определение}
+
+\begin{document}
+
+\title{Поиск абелевых строк наибольшей длины}
+\author{И.~Збань\\
+Научный руководитель: В.~Аксёнов}
+
+\date{\today}
+\institute{\includegraphics[width=0.3\textwidth]{pics/itmo.png}}
+\frame{\titlepage}                                   
+
+\begin{comment}
+\begin{frame}{}
+  \tableofcontents
+\end{frame}
+\end{comment}
+
+\section{Введение}
+
+\begin{frame}{Постановка задачи}
+\hspace{0.5cm}
+Задача: Нахождение наибольшей общей абелевой подстроки и поиск абелевых подквадратов.
+
+\vspace{0.5cm}
+
+\hspace{0.5cm}
+\onslide<2->
+\alert{Мотивация:}
+\begin{itemize}
+\item<3-> Быстроразвивающаяся область, много публикаций за последнее время
+\item<4-> Актуальность: подзадачи в бионформатике (gene clusters), фильтры в задаче поиска образца
+\item<5-> Близость с известной задачей 3SUM
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Краткое описание}
+\hspace{0.5cm}
+Работа состоит из следующих пунктов:
+\begin{itemize}
+\item<2-> Оценка алгоритма решения 3SUM+ для монотонных множеств на примере задачи о количестве абелевых подквадратов
+\item<3-> Анализ задачи LCAF для частного случая бинарного алфавита
+\item<4-> Решение задачи LCAF для общего случая
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Количество абелевых подквадратов}
+Задача о количестве абелевых подквадратов сводится к 3SUM+
+\vspace{0.5cm}
+
+\onslide<2-> A=B=\{($c_a(i)$, $c_b(i)$)\}, C=\{$2c_a(i)$,$2c_b(i)$\}
+\vspace{0.5cm}
+
+где $c_a(i), c_b(i)$~--- количество букв $a$ и $b$ на префиксе длины $i$
+\vspace{0.5cm}
+
+\onslide<3-> и число подстрок~--- (\#3$SUM^+$(A,B,C)-(n+1))/2
+
+\end{frame}
+
+\begin{frame}{Сравнение алгоритмов на простой строке}
+Картиночка на которой видно, что квадрат работает быстро, а 1.86~--- медленно
+\end{frame}
+
+\begin{frame}{Сравнение алгоритмов на случайном тесте}
+Картиночка, на которой видно, что квадрат работает быстро, а 1.86~--- оооочень медленно
+\end{frame}
+
+\begin{frame}{binary LCAF}
+Картинка с матожиданием LCAF случайных бинарных строк
+
+\vspace{0.5cm}
+Доказана оценка сверху, что LCAF ограничена линейной функцией, тем самым опровергнута посылка из первоисточника
+\end{frame}
+
+\begin{frame}{general LCAF}
+Используя персистентные деревья с limited node copying предложен алгоритм LCAF в общем случае за $(\mathcal{O}(n^2 \log \sigma), \mathcal{O}(n))$
+
+\vspace{0.5cm}
+Идея~--- построить персистентный массив вектора Парея для строки-конкатенации обеих данных строк, посчитать некий хеш от каждого корня, и проверить, были ли одинаковые версии, соответствующие обеим строкам
+\end{frame}
+
+\begin{frame}{general LCAF}
+Используя персистентные деревья с limited node copying предложен алгоритм LCAF в общем случае за $(\mathcal{O}(n^2 \log \sigma), \mathcal{O}(n))$
+
+\vspace{0.5cm}
+Идея~--- построить персистентный массив вектора Парея для строки-конкатенации обеих данных строк, посчитать некий хеш от каждого корня, и проверить, были ли одинаковые версии, соответствующие обеим строкам
+\end{frame}
+
+\begin{frame}{Схема вычисления хеша}
+Тут какая-то непонятная картинка
+\end{frame}
+
+\begin{frame}{Сравнение алгоритмов LCAF}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Год & Авторы & Время & Память \\
+\hline
+2013 & StringMasters & - & - \\
+\hline
+2015 & Кто-то & $\mathcal{O}(n^2 \sigma)$ & $\mathcal{O}(n \sigma)$ \\
+\hline
+2016 & Кто-то & $\mathcal{O}(n^2 \sigma)$ & $\mathcal{O}(n)$ \\
+\hline
+2016 & SPIRE & $\mathcal{O}(n^2 \log^2 n \log^* n)$ & $\mathcal{O}(n \log^2 n)$ \\
+\hline
+2017 & Я & $\mathcal{O}(n^2 \log \sigma)$ & $\mathcal{O}(n)$ \\
+\hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}{Вопросы?}
+\begin{center}
+Спасибо за внимание.
+\end{center}
+\end{frame}
+\end{document}

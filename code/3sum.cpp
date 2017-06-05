@@ -610,7 +610,7 @@ void stress() {
 		srand(it);
 		
 		//int n = (int)(4e4);
-		int n = 500;
+		int n = 1000;
 		string s = "";
 		for (int i = 0; i < n; i++) s += (char)('a' + rand() % 2);
 		//for (int i = 0; i < n; i++) s += (char)('a');
