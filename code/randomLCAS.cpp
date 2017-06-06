@@ -69,10 +69,10 @@ int lcasFast(string a, string b) {
 
 int main() {
     //const int N = 10000;
-    for (int N = 100; N <= 10000; N += 100) {
+    for (int N = 500; N <= 10000; N += 500) {
     long long sum = 0;
     long long sumJumps = 0;
-    const int ITERATIONS = 1e3;
+    const int ITERATIONS = 5e3;
     for (int it = 0; it < ITERATIONS; it++) {
         srand(it);
         string a = randomString(N);

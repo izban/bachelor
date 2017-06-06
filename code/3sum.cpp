@@ -642,9 +642,48 @@ void stress() {
 	}
 }
 
+void testSpeedEasy() {
+    cout.precision(3);
+    cout << fixed;
+    const int ITERS = 30;
+    for (int n = 300; n <= 5000; n += 300) {
+        double sum = 0;
+        for (int it = 0; it < ITERS; it++) {
+            cerr << "n: " << n << ", iteration " << it << " of " << ITERS << endl;
+            string s(n, 'a');
+            double st = clock() / (double)CLOCKS_PER_SEC;
+            fastsolve(s);
+            double fn = clock() / (double)CLOCKS_PER_SEC;
+            sum += fn - st;
+        } 
+        cout << n << " " << sum / ITERS << endl;
+    }
+}
+
+void testSpeedRandom() {
+    cout.precision(3);
+    cout << fixed;
+    const int ITERS = 20;
+    for (int n = 200; n <= 3000; n += 200) {
+        double sum = 0;
+        for (int it = 0; it < ITERS; it++) {
+            cerr << "n: " << n << ", iteration " << it << " of " << ITERS << endl;
+            string s;
+            for (int i = 0; i < n; i++) s += (char)('a' + rand() % 2);
+            double st = clock() / (double)CLOCKS_PER_SEC;
+            fastsolve(s);
+            double fn = clock() / (double)CLOCKS_PER_SEC;
+            sum += fn - st;
+        } 
+        cout << n << " " << sum / ITERS << endl;
+    }
+}
+
 int main() {
 	freopen("input.txt", "r", stdin);
-	stress();
+    testSpeedRandom();
+    //testSpeedEasy();
+	//stress();
 
 	return 0;
 }
