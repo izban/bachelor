@@ -1,2 +1,2 @@
-plot "3SumEasy.dat" u 1:2 with linespoints
+plot "3SumRandom2.dat" u 1:2 with linespoints
 pause mouse

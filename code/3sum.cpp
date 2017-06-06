@@ -666,6 +666,7 @@ void testSpeedRandom() {
     const int ITERS = 20;
     for (int n = 200; n <= 3000; n += 200) {
         double sum = 0;
+        vector<double> vct;
         for (int it = 0; it < ITERS; it++) {
             cerr << "n: " << n << ", iteration " << it << " of " << ITERS << endl;
             string s;
@@ -673,9 +674,12 @@ void testSpeedRandom() {
             double st = clock() / (double)CLOCKS_PER_SEC;
             fastsolve(s);
             double fn = clock() / (double)CLOCKS_PER_SEC;
-            sum += fn - st;
+            vct.push_back(fn - st);
         } 
-        cout << n << " " << sum / ITERS << endl;
+        sort(vct.begin(), vct.end());
+        for (int i = 0; i < 5; i++) vct.pop_back();
+        for (auto x : vct) sum += x;
+        cout << n << " " << sum / (int)vct.size() << endl;
     }
 }
 
