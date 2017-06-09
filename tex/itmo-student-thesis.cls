@@ -698,4 +698,7 @@
 %\else
 %    \RequirePackage{paratype}
 %\fi	
-\renewcommand{\thesection}{\arabic{section}}
+%\renewcommand{\thesection}{\arabic{section}}
+\newtheorem{problem}{Задача}
+
+%\newtheorem{definition}{Определение}
