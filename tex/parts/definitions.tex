@@ -20,16 +20,34 @@ $s$~--- Абелев квадрат, если $s=ab$, где $a \equiv b$.
 \texttt{w.h.p.}~--- \textit{with high probability}, решение, с большой вероятностью работающее за такое время.
 \end{definition}
 
-%\begin{problem}
-%\textit{Jumbled indexing}~--- задача проверки, содержит ли данный текст $T$ подстроку, %Абелево эквивалентную шаблону $S$.
-%\end{problem}
+\begin{definition}
+Будем говорить, что алгоритм работает за $\langle \mathcal{O}(f(n)), \mathcal{O}(g(n)) \rangle$, если он работает, используя $\mathcal{O}(f(n))$ времени и  $\mathcal{O}(g(n))$ памяти.
+\end{definition}
+
+\begin{definition}
+\textit{НОАП} (\textit{LCAF})~--- наибольшая общая Абелева подстрока (longest common Abelian factor).
+\end{definition}
+
+\begin{problem}
+$3SUM^+$: дано три множества $A, B, C$, нужно найти три числа $a \in A, b \in B, c \in C$ такие, что $a+b=c$.
+\end{problem}
+
+\begin{problem}
+Поиск НОАП: даны две строки $a, b \in \Sigma^n$. Нужно найти наидлиннейшую строку $x$ такую, что $xs_a \equiv a, xs_b \equiv b$ для некоторых $s_a, s_b$.
+\end{problem}
+
+\begin{problem}
+Число Абелевых подквадратов: дана строка $s=s_0s_1 \ldots s_{n-1}$ из символов двух типов, $a$ и $b$. Нужно найти количество различных ее подстрок $s_{i \cdots j}$, являющихся Абелевыми квадратами.
+\end{problem}
+
+\begin{problem}
+\textit{Jumbled indexing}~--- задача проверки, содержит ли данный текст $T$ подстроку, Абелево эквивалентную шаблону $S$.
+\end{problem}
+
+
 
 %\begin{problem}
-%$3SUM^+$: дано три множества $A, B, C$, нужно найти три числа $a \in A, b \in B, c \in %C$ такие, что $a+b=c$.
-%\end{problem}
-
-%\begin{problem}
 
 %\end{problem}
 
-Еще что-нибудь наверн
+%Еще что-нибудь наверн
