@@ -17,18 +17,18 @@
 \subsubsection{Сведение к 3SUM+}
 Задачу о поиске числа Абелевых подквадратов бинарной можно свести к задаче 3SUM+.
 
-Пусть строка . Рассмотрим следующие множества:
+Пусть дана строка $s=s_0s_1 \ldots s_{n-1}$. Рассмотрим следующие множества:
 
 \begin{equation}
-A = \{ (cnt_a(i), cnt_b(i)) | 0 \le i \le n \},
+A = \{ (cnt_a(i), cnt_b(i))\ |\ 0 \le i \le n \},
 \end{equation}
 
 \begin{equation}
-B = \{ (cnt_a(i), cnt_b(i)) | 0 \le i \le n \},
+B = \{ (cnt_a(i), cnt_b(i))\ |\ 0 \le i \le n \},
 \end{equation}
 
 \begin{equation}
-C = \{ (2cnt_a(i), 2cnt_b(i)) | 0 \le i \le n \},
+C = \{ (2 \cdot cnt_a(i), 2 \cdot cnt_b(i))\ |\ 0 \le i \le n \},
 \end{equation}
 
 
