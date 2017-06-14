@@ -1,0 +1,1 @@
+/home/izban/CLionProjects/lcas/main.cpp
