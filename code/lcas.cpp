@@ -454,10 +454,10 @@ void stress() {
 }
 
 template <typename T>
-void testTime(T f) {
-    for (int n = 100; n <= 1200; n += 100) {
-        cerr << n << endl;
-        int k = n;
+void testTime(T f, int N) {
+    for (int n = N; n <= N; n += 100) {
+        int k = min(n, (int)(log(n) * 50));
+        cerr << n << " " << k << endl;
         auto a = randString(n, k);
         auto b = randString(n, k);
         
@@ -470,8 +470,15 @@ void testTime(T f) {
 
 int main() {
     //stress();
-    testTime([&](vector<int> a, vector<int> b) {
-        attabi::solve(a, b);
-    });
+    for (int N = 600; N <= 1500; N += 100) { 
+        testTime([&](vector<int> a, vector<int> b) {
+            fast::solve(a, b);
+        }, N);
+        testTime([&](vector<int> a, vector<int> b) {
+            attabi::solve(a, b);
+        }, N);
+    }
+    if (0) for (int N = 600; N <= 1500; N += 100) { 
+    }
     return 0;
 }
