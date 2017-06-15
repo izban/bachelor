@@ -7,7 +7,7 @@
 \end{definition}
 
 \begin{definition}
-Обозначим за $|s|_{c_1}$ количество символов $c_1$ в строке $s$.
+Обозначим за $|s|_c$ количество символов $c$ в строке $s$.
 \end{definition}
 
 
@@ -25,26 +25,33 @@
 \end{definition}
 
 \begin{definition}
-Абелевым подквадратом строки $s$ назовем подстроку строки $s$, являющуюся Абелевым квадратом.
+Абелевым подквадратом строки $s$ назовем ее подстроку строки $s$, являющуюся Абелевым квадратом.
 \end{definition}
 
 \begin{definition}
 Событие является \texttt{w.h.p.}~--- \textit{with high probability}, если вероятность такого исхода зависит от какого-то параметра $n$, и эта вероятность стремится к единицы при стремлении $n$ к бесконечности.
 \end{definition}
-%TODO WARNING переписать?
 
 \begin{definition}
 Будем говорить, что алгоритм работает за $\langle \mathcal{O}(f(n)), \mathcal{O}(g(n)) \rangle$, если он работает, используя $\mathcal{O}(f(n))$ времени и  $\mathcal{O}(g(n))$ памяти.
 \end{definition}
 
 \begin{definition}
-\textit{НОАП} (\textit{LCAF})~--- наибольшая общая Абелева подстрока (longest common Abelian factor).
+Строка $t$ имеет Абелево вхождение в строку $s$, если у строки $s$ есть подстрока $x$, Абелево эквивалентная $t$.
+\end{definition}
+
+%\begin{definition}
+%\textit{НОАП} (\textit{LCAF})~--- наибольшая общая Абелева подстрока (longest common Abelian factor).
+%\end{definition}
+
+\begin{definition}
+Хешмап~--- ассоциативный массив, обрабатывающий запросы \textit{get} и \textit{put} за $\mathcal{O}(1)$.
 \end{definition}
 
 Далее сформулируем некоторые задачи, которые используются в работе.
 
 \begin{problem}
-$3SUM^+$. Дано три множества целых чисел $A, B, C$. Нужно найти три числа $a \in A, b \in B, c \in C$ такие, что $a+b=c$.
+$3SUM^+$. Дано три множества кортежей целых чисел $A, B, C$. Нужно найти три элемента $a \in A, b \in B, c \in C$ такие, что $a+b=c$.
 \end{problem}
 
 \begin{problem}
@@ -57,7 +64,7 @@ $3SUM^+$. Дано три множества целых чисел $A, B, C$. Н
 \end{problem}
 
 \begin{problem}
-\textit{Jumbled indexing}. Задача проверки того, содержит ли данный текст $T$ подстроку, Абелево эквивалентную заданному шаблону $S$.
+\textit{Jumbled indexing}, \textit{Histogram indexing}. Задача проверки того, содержит ли данный текст $T$ подстроку, Абелево эквивалентную заданному шаблону $S$.
 \end{problem}
 
 
