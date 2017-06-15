@@ -663,8 +663,8 @@ void testSpeedEasy() {
 void testSpeedRandom() {
     cout.precision(3);
     cout << fixed;
-    const int ITERS = 100;
-    for (int n = 200; n <= 3000; n += 200) {
+    const int ITERS = 200;
+    for (int n = 300; n <= 5000; n += 300) {
         double sum = 0;
         vector<double> vct;
         for (int it = 0; it < ITERS; it++) {
@@ -677,8 +677,8 @@ void testSpeedRandom() {
             vct.push_back(fn - st);
         } 
         sort(vct.begin(), vct.end());
-        for (int i = 0; i < 10; i++) vct.pop_back();
-        for (int i = 0; i < 10; i++) vct.erase(vct.begin());
+        //for (int i = 0; i < 10; i++) vct.pop_back();
+        //for (int i = 0; i < 10; i++) vct.erase(vct.begin());
         for (auto x : vct) sum += x;
         cout << n << " " << sum / (int)vct.size() << endl;
     }

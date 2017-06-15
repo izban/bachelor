@@ -797,3 +797,10 @@
 %\fi	
 
 \newtheorem{problem}{Задача}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\makeatletter
+\def\@endtheorem{\popQED\endtrivlist\@endpefalse }
+\makeatother
+
+%\newtheorem{lemma}{Лемма}
