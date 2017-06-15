@@ -1,3 +1,5 @@
 set multiplot
-plot "lcasFastLog.dat" u 1:2 with linespoints, "lcasAttabiLog.dat" u 1:2 with linespoints
+set xlabel "n"
+set ylabel "time, seconds"
+plot "ThisWork" with linespoints, "Attabi" with linespoints
 pause mouse
